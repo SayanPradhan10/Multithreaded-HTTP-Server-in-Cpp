@@ -17,8 +17,6 @@ A lightweight, high-performance HTTP/1.1 web server built from scratch in C++17 
 10. [Dashboard](#dashboard)
 11. [Benchmark Instructions](#benchmark-instructions)
 12. [Graceful Shutdown](#graceful-shutdown)
-13. [Key Technical Interview Questions](#key-technical-interview-questions)
-14. [Design Decisions & Limitations](#design-decisions--limitations)
 
 ---
 
