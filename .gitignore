@@ -1,0 +1,25 @@
+# macOS
+.DS_Store
+
+# Build output
+obj/
+server
+
+# Compiled object files
+*.o
+
+# Debug/build files
+*.dSYM/
+*.out
+
+# IDE/editor files
+.vscode/
+.idea/
+
+# Environment/secrets
+.env
+.env.*
+
+# Temporary files
+*.tmp
+*.log

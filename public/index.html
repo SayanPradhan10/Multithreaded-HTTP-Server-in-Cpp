@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multithreaded HTTP Server Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-left">
+                <h1>Multithreaded HTTP Server</h1>
+                <p class="subtitle">C++17 • POSIX Sockets • Thread Pool • Task Queue</p>
+            </div>
+            <div class="status-badge" id="server-status-badge">
+                <span class="status-dot"></span>
+                <span id="server-status-text">ONLINE</span>
+            </div>
+        </header>
+
+        <section class="metrics-grid">
+            <div class="card metric-card">
+                <div class="metric-title">Port</div>
+                <div class="metric-value" id="stat-port">8080</div>
+                <div class="metric-sub">Listening TCP Port</div>
+            </div>
+
+            <div class="card metric-card">
+                <div class="metric-title">Total Requests</div>
+                <div class="metric-value" id="stat-requests">0</div>
+                <div class="metric-sub">Cumulative Accepted</div>
+            </div>
+
+            <div class="card metric-card">
+                <div class="metric-title">Worker Threads</div>
+                <div class="metric-value" id="stat-workers">8</div>
+                <div class="metric-sub">Fixed Thread Pool</div>
+            </div>
+
+            <div class="card metric-card">
+                <div class="metric-title">Active Workers</div>
+                <div class="metric-value" id="stat-active">0</div>
+                <div class="metric-sub">Currently Processing</div>
+            </div>
+
+            <div class="card metric-card">
+                <div class="metric-title">Queued Tasks</div>
+                <div class="metric-value" id="stat-queue">0</div>
+                <div class="metric-sub">Pending in FIFO Queue</div>
+            </div>
+
+            <div class="card metric-card">
+                <div class="metric-title">Uptime</div>
+                <div class="metric-value" id="stat-uptime">0s</div>
+                <div class="metric-sub">Elapsed Server Time</div>
+            </div>
+        </section>
+
+        <section class="card tester-section">
+            <div class="tester-header">
+                <h2>Interactive API Tester</h2>
+                <span class="auto-refresh-label">
+                    <input type="checkbox" id="auto-refresh-toggle" checked> Auto-refresh stats (every 2s)
+                </span>
+            </div>
+
+            <div class="button-toolbar">
+                <button class="btn btn-primary" onclick="testEndpoint('/api/hello')">GET /api/hello</button>
+                <button class="btn btn-primary" onclick="testEndpoint('/api/stats')">GET /api/stats</button>
+                <div class="compute-group">
+                    <button class="btn btn-compute" onclick="testCompute()">GET /api/compute?n=</button>
+                    <input type="number" id="compute-n-input" value="30" min="0" max="90" placeholder="n">
+                </div>
+                <button class="btn btn-warning" onclick="testEndpoint('/unknown')">GET /unknown (404)</button>
+                <button class="btn btn-secondary" onclick="fetchStats()">Refresh Stats Now</button>
+            </div>
+
+            <div class="response-panel">
+                <div class="response-header">
+                    <div class="url-display">
+                        <span class="method-tag">GET</span>
+                        <span id="response-url">Ready to send request</span>
+                    </div>
+                    <div class="status-tag" id="response-status">Status: Idle</div>
+                </div>
+                <pre class="response-body" id="response-body">// Click any endpoint button above to test the server response</pre>
+            </div>
+        </section>
+
+        <footer>
+            <p>Built with C++17 Standard Library & POSIX/BSD Socket APIs • Low-overhead educational architecture</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
